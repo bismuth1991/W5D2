@@ -1,0 +1,8 @@
+<h3><%= @sub.title %></h3>
+<ul>
+  <li><strong>Moderated by:</strong> <%= @sub.moderator.username %></li>
+  <br>
+  <li><strong>Description:</strong> <%= @sub.description %></li>
+</ul>
+
+<a href="<%= edit_sub_url(@sub) %>">Edit Sub</a>

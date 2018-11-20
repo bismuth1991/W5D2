@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
     if user
       login(user)
-      render json: user
+      redirect_to subs_url
     else
       flash[:errors] = ["Invalid Credentials"]
       redirect_to new_session_url
