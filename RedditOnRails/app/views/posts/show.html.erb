@@ -1,0 +1,13 @@
+<h2><%= @post.title %></h2>
+
+<ul>
+  <li><strong>Created by: </strong><%= @post.author.username %></li>
+  <br>
+  <li><strong>URL: </strong><%= @post.url %></li>
+  <br>
+  <li><strong>Content: </strong><%= @post.content %></li>
+</ul>
+
+<a href="<%= sub_url(@post.sub_id) %>">Back to Sub</a>
+<br>
+<a href="<%= edit_post_url(@post) %>">Edit Post</a>

@@ -1,4 +1,6 @@
 class SubsController < ApplicationController
+  before_action :require_moderator, only: [:edit]
+
   def new
     render :new
   end
@@ -19,6 +21,7 @@ class SubsController < ApplicationController
     end
   end
 
+
   def show
     @sub = Sub.find(params[:id])
 
@@ -30,14 +33,7 @@ class SubsController < ApplicationController
   end
 
   def edit
-    @sub = Sub.find(params[:id])
-
-    if @sub.moderator_id != current_user.id
-      flash[:errors] = ["You're not authorized to modify this Sub!"]
-      redirect_to sub_url(@sub)
-    else
-      render :edit
-    end
+    render :edit
   end
 
   def update
@@ -52,7 +48,18 @@ class SubsController < ApplicationController
   end
 
   private
+
   def sub_params
     params.require(:sub).permit(:title, :description)
   end
+
+  def require_moderator
+    @sub = Sub.find(params[:id])
+
+    if @sub.moderator_id != current_user.id
+      flash[:errors] = ["You're not authorized to modify this Sub!"]
+      redirect_to sub_url(@sub)
+    end
+  end
+
 end
