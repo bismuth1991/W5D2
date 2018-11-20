@@ -22,5 +22,23 @@
     <input type="text" name="post[content]" value="">
   </label>
 
+  <br>
+
+  <label>
+    Which subs to post to?
+    <input type="hidden" name="post[sub_ids][]" value="">
+
+    <br>
+    <% Sub.all.each do |sub| %>
+      <input
+        type="checkbox"
+        name="post[sub_ids][]"
+        value="<%= sub.id %>"
+      >
+        <%= sub.title %>
+      <br>
+    <% end %>
+  </label>
+
   <input type="submit" name="" value="Create New Post">
 </form>
