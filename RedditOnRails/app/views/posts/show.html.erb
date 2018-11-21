@@ -11,11 +11,12 @@
 <h3>Comments</h3>
 
 <ul>
-  <% @post.comments.each do |comment| %>
+  <% @post.comments.where(parent_comment_id: nil).each do |comment| %>
     <li>
       By: <%= comment.author.username %>
       <br>
       <%= comment.content %>
+      <a href="<%= comment_url(comment) %>">Go to Comment</a>
     </li>
   <% end %>
 </ul>
@@ -24,4 +25,4 @@
 <br>
 <a href="<%= subs_url %>">Back to all Subs</a>
 <br>
-<a href="<%= new_post_comment_url(@post) %>">Comment</a>
+<a href="<%= new_post_comment_url(@post) %>">Add Top Level Comment</a>
