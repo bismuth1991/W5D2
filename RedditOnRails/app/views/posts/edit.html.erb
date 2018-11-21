@@ -23,5 +23,22 @@
     <input type="text" name="post[content]" value="<%= @post.content %>">
   </label>
 
+  <label>
+    Which subs to post to?
+    <input type="hidden" name="post[sub_ids][]" value="">
+
+    <br>
+    <% Sub.all.each do |sub| %>
+      <input
+        type="checkbox"
+        name="post[sub_ids][]"
+        value="<%= sub.id %>"
+        <%= "checked" if @post.sub_ids.include?(sub.id) %>
+      >
+        <%= sub.title %>
+      <br>
+    <% end %>
+  </label>
+
   <input type="submit" name="" value="Edit Post">
 </form>

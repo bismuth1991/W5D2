@@ -8,4 +8,20 @@
   <li><strong>Content: </strong><%= @post.content %></li>
 </ul>
 
+<h3>Comments</h3>
+
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li>
+      By: <%= comment.author.username %>
+      <br>
+      <%= comment.content %>
+    </li>
+  <% end %>
+</ul>
+
 <a href="<%= edit_post_url(@post) %>">Edit Post</a>
+<br>
+<a href="<%= subs_url %>">Back to all Subs</a>
+<br>
+<a href="<%= new_post_comment_url(@post) %>">Comment</a>
